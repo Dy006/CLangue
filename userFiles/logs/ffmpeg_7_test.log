@@ -1,0 +1,25 @@
+ffmpeg version N-52943-g500220a Copyright (c) 2000-2013 the FFmpeg developers
+  built on May 10 2013 05:11:56 with gcc 4.6 (Debian 4.6.3-1)
+  configuration: --prefix=/root/ffmpeg-static/32bit --arch=x86_32 --extra-cflags='-m32 -I/root/ffmpeg-static/32bit/include -static' --extra-ldflags='-m32 -L/root/ffmpeg-static/32bit/lib -static' --extra-libs='-lxml2 -lexpat -lfreetype' --enable-static --disable-shared --disable-ffserver --disable-doc --enable-bzlib --enable-zlib --enable-postproc --enable-runtime-cpudetect --enable-libx264 --enable-gpl --enable-libtheora --enable-libvorbis --enable-libmp3lame --enable-gray --enable-libass --enable-libfreetype --enable-libopenjpeg --enable-libspeex --enable-libvo-aacenc --enable-libvo-amrwbenc --enable-version3 --enable-libvpx
+  libavutil      52. 30.100 / 52. 30.100
+  libavcodec     55.  7.100 / 55.  7.100
+  libavformat    55.  4.101 / 55.  4.101
+  libavdevice    55.  0.100 / 55.  0.100
+  libavfilter     3. 63.101 /  3. 63.101
+  libswscale      2.  3.100 /  2.  3.100
+  libswresample   0. 17.102 /  0. 17.102
+  libpostproc    52.  3.100 / 52.  3.100
+[wav @ 0xb633fa0] max_analyze_duration 5000000 reached at 5015510 microseconds
+Guessed Channel Layout for  Input Stream #0.0 : stereo
+Input #0, wav, from 'wav/record_7_test.wav':
+  Duration: 00:00:07.41, bitrate: 1411 kb/s
+    Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, stereo, s16, 1411 kb/s
+Output #0, mp3, to 'mp3/record_7_test.mp3':
+  Metadata:
+    TSSE            : Lavf55.4.101
+    Stream #0:0: Audio: mp3 (libmp3lame), 44100 Hz, stereo, s16p, 64 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le -> libmp3lame)
+Press [q] to stop, [?] for help
+size=      51kB time=00:00:06.45 bitrate=  64.5kbits/s    size=      58kB time=00:00:07.41 bitrate=  64.5kbits/s    
+video:0kB audio:58kB subtitle:0 global headers:0kB muxing overhead 0.406320%
