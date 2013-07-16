@@ -34,6 +34,9 @@ RewriteRule ^admin/admin/adduser$ admin.php?type=admin&a=addUser
 RewriteRule ^admin/admin/deleteuser/([0-9]+)$ controler/admin/admin.php?a=deleteUser&id=$1
 RewriteRule ^admin/admin/addgroup$ admin.php?type=admin&a=addGroup
 RewriteRule ^admin/admin/addetablishing$ admin.php?type=admin&a=addEtablishing
+RewriteRule ^admin/admin/user/reinitpassword/([a-zA-Z0-9_]+)$ admin.php?type=admin&a=reinit&u=$1
+RewriteRule ^admin/admin/user/edit/([a-zA-Z0-9_]+)$ admin.php?type=admin&a=editUser&u=$1
+RewriteRule ^admin/admin/user/delete/([a-zA-Z0-9_]+)$ admin.php?type=admin&a=del&u=$1
 
 RewriteRule ^lang/([a-z]+)$ controler/student/changeLangue.php?l=$1
 

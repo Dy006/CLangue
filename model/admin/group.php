@@ -94,6 +94,8 @@ function addHomework($name, $work, $groupName, $dateEnd)
     {
         $req = $bdd->prepare('INSERT INTO homework(username, name, type, subjectId, groupName, dateEnd) VALUE (:username, :name, :type, :subjectId, :groupName, :dateEnd)');
         $req->execute(array('username' => $_SESSION['user'], 'name' => $name, 'type' => $infoSubject['type'], 'subjectId' => $infoSubject['id'], 'groupName' => $group, 'dateEnd' => $dateEnd));
+
+        $req->closeCursor();
     }
 }
 
@@ -104,6 +106,85 @@ function deleteHomework($id)
     $req = $bdd->prepare('DELETE FROM homework WHERE id = ?');
     $req->execute(array($id));
 
+    $req->closeCursor();
+
     $req = $bdd->prepare('DELETE FROM score WHERE homeworkId = ?');
     $req->execute(array($id));
+
+    $req->closeCursor();
+}
+
+function addStudent($username, $password, $category, $etablishing, $groupName)
+{
+    if(preg_match('#^[A-Z]{1}[a-z]{2,}[A-Z]{1}$#', $username))
+    {
+        global $bdd;
+
+        $req = $bdd->prepare('SELECT COUNT(*) AS id FROM users WHERE username = ?');
+        $req->execute(array($username));
+
+        $infoUsers = $req->fetch();
+
+        $countUsers = $infoUsers['id'];
+
+        $req->closeCursor();
+
+        $req = $bdd->prepare('SELECT COUNT(*) AS id FROM usergroup WHERE username = :username AND groupName = :groupName');
+        $req->execute(array('username' => $username, 'groupName' => $groupName));
+
+        $infoUserGroup = $req->fetch();
+
+        $countUserGroup = $infoUserGroup['id'];
+
+        $req->closeCursor();
+
+        if($countUserGroup > 0)
+        {
+            return 'alreadyInGroup';
+        }
+        else
+        {
+            if($countUsers > 0)
+            {
+                $req = $bdd->prepare('INSERT INTO usergroup(username, groupName, category, etablishing) VALUES (:username, :groupName, :category, :etablishing)');
+                $req->execute(array('username' => $username, 'groupName' => $groupName, 'category' => $category, 'etablishing' => $etablishing));
+
+                $req->closeCursor();
+
+                return json_encode(array('alreadyExist', $username, '', $category, $etablishing, $groupName));
+            }
+            else
+            {
+                $passwordHach = sha1($password);
+
+                $req = $bdd->prepare('INSERT INTO users(username, password, teacherAdd, category, etablishing) VALUES (:username, :password, :teacherAdd, :category, :etablishing)');
+                $req->execute(array('username' => $username, 'password' => $passwordHach, 'teacherAdd' => $_SESSION['user'], 'category' => $category, 'etablishing' => $etablishing));
+
+                $req->closeCursor();
+
+                $req = $bdd->prepare('INSERT INTO usergroup(username, groupName, category, etablishing) VALUES (:username, :groupName, :category, :etablishing)');
+                $req->execute(array('username' => $username, 'groupName' => $groupName, 'category' => $category, 'etablishing' => $etablishing));
+
+                $req->closeCursor();
+
+                return json_encode(array('addStudent', $username, $password, $category, $etablishing, $groupName));
+            }
+        }
+    }
+    else
+    {
+        return 'notMatch';
+    }
+}
+
+function deleteStudent($username, $groupName)
+{
+    global $bdd;
+
+    $req = $bdd->prepare('DELETE FROM usergroup WHERE username = :username AND groupName = :groupName');
+    $req->execute(array('username' => $username, 'groupName' => $groupName));
+
+    $req->closeCursor();
+
+    return 'true';
 }

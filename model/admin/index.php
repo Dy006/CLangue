@@ -9,7 +9,7 @@ function connectionAdmin($username, $password, $etablishing)
     }
     else
     {
-        $req = $bdd->prepare('SELECT COUNT(*) AS exist, username, category, lv1 FROM users WHERE username = :username AND password = :password AND etablishing = :etablishing') or die(mysql_error());
+        $req = $bdd->prepare('SELECT COUNT(*) AS exist, username, category, language FROM users WHERE username = :username AND password = :password AND etablishing = :etablishing') or die(mysql_error());
         $req->execute(array('username' => $username,'password' => sha1($password), 'etablishing' => $etablishing));
         $data = $req->fetch();
 

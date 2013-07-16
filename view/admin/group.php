@@ -24,6 +24,124 @@
     <![endif]-->
 
     <script type="text/javascript">
+        function addStudent(username, etablishing, groupName)
+        {
+            var OAjax;
+            var password = generatePasswordStudent();
+
+            if (window.XMLHttpRequest) OAjax = new XMLHttpRequest();
+            else if (window.ActiveXObject) OAjax = new ActiveXObject('Microsoft.XMLHTTP');
+            OAjax.open('POST',"admin.php?type=group&a=addStudent",true);
+            OAjax.onreadystatechange = function()
+            {
+                if (OAjax.readyState == 4 && OAjax.status==200)
+                {
+                    if (document.getElementById)
+                    {
+                        if(OAjax.responseText == 'notMatch')
+                        {
+                            document.getElementById('alertStudent').innerHTML = '<div class="alert alert-error">Le pseudo ne correspond pas.</div>';
+                        }
+                        else if(OAjax.responseText == 'alreadyInGroup')
+                        {
+                            document.getElementById('alertStudent').innerHTML = '<div class="alert alert-error">Cet élève est déjà dans ce groupe.</div>';
+                        }
+                        else
+                        {
+                            var tabInfoUser = JSON.parse(OAjax.responseText);
+
+                            if(tabInfoUser[0] == 'addStudent')
+                            {
+                                document.getElementById('alertStudent').innerHTML = '<div class="alert alert-info">Cet élève a été ajouté au groupe, il a été crée par vous, son mot de passe est : ' + tabInfoUser[2] + '.</div>';
+                            }
+                            else
+                            {
+                                document.getElementById('alertStudent').innerHTML = '<div class="alert alert-info">Cet élève a été ajouté à votre groupe, il a déjà été crée par un professeur qui lui remettra son mot de passe.</div>';
+                            }
+
+                            console.log(tabInfoUser);
+
+                            console.log('table' + tabInfoUser[5]);
+
+                            addRowTableStudent('table' + tabInfoUser[5], tabInfoUser[1], tabInfoUser[3], tabInfoUser[4]);
+                        }
+
+                        console.log(OAjax.responseText);
+                    }
+                }
+            }
+
+            OAjax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+            OAjax.send('username=' + username + '&password=' + password + '&category=Student&etablishing=' + etablishing + '&groupName=' + groupName);
+        }
+
+        function generatePasswordStudent()
+        {
+            var cars = 'az0erty2ui3op4qs5df6gh7jk8lm9wxcvbn', long = cars.length;
+
+            var wpas = "";
+            var wpos;
+            var taille = 6;
+
+            for (i = 0; i < taille; i++)
+            {
+                wpos = Math.round(Math.random() * long);
+                wpas += cars.substring(wpos, wpos + 1);
+            }
+
+            return wpas;
+        }
+
+        function addRowTableStudent(tableId, username, category, etablishing)
+        {
+            var newRow = document.getElementById(tableId).insertRow(-1);
+
+            var newCell = newRow.insertCell(0);
+
+            newCell.innerHTML = username;
+
+            newCell = newRow.insertCell(1);
+
+            newCell.innerHTML = category;
+
+            newCell = newRow.insertCell(2);
+
+            newCell.innerHTML = etablishing;
+        }
+
+        function deleteStudent(username, groupName, currentRow)
+        {
+            var OAjax;
+
+            if (window.XMLHttpRequest) OAjax = new XMLHttpRequest();
+            else if (window.ActiveXObject) OAjax = new ActiveXObject('Microsoft.XMLHTTP');
+            OAjax.open('POST',"admin.php?type=group&a=deleteStudent",true);
+            OAjax.onreadystatechange = function()
+            {
+                if (OAjax.readyState == 4 && OAjax.status==200)
+                {
+                    if (document.getElementById)
+                    {
+                        if(OAjax.responseText == 'true')
+                        {
+                            var tableId = 'table' + groupName;
+
+                            document.getElementById(tableId).deleteRow(currentRow);
+
+                            document.getElementById('alertStudent').innerHTML = '<div class="alert alert-info">Cet élève a bien été supprimé du groupe.</div>';
+                        }
+                        else
+                        {
+                            document.getElementById('alertStudent').innerHTML = '<div class="alert alert-error">Une erreur est survenue lors de la suppression de cet élève.</div>';
+                        }
+                    }
+                }
+            }
+
+            OAjax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+            OAjax.send('username=' + username + '&groupName=' + groupName);
+        }
+
         function confirmdelete(id)
         {
             document.getElementById('returne').innerHTML = '<center><a href="admin/homework/delete/'+ id +'" class="btn btn-danger">Confirmation de suppression</a> <a href="#" data-dismiss="modal" class="btn">Annuler</a></center> '
@@ -182,10 +300,15 @@
                 </div>
             </div>
             <a href="#addHomework" class="btn" data-toggle="modal">Ajouter un devoir</a>
+            <h1>Vos groupes</h1>
+            <p>Les tableaux affichés ci-dessous sont les groupes auquels vous appartenez. Vous avez la possibilité d'ajouter les élèves.</p>
+            <div id="alertStudent"></div>
             <div class="row-fluid">
                 <?php
                 foreach($listGroups as $group)
                 {
+                    $numberRow = 0;
+
                     $listUsers = getListUsersGroup($group['groupName']);
 
                     echo '<div class="box span6">
@@ -193,24 +316,38 @@
 						        <h2><i class="halflings-icon align-justify"></i><span class="break"></span>' . $group['groupName'] . '</h2>
 					        </div>
 					        <div class="box-content">
-						        <table class="table">
+						        <table id="table' . $group['groupName'] . '" class="table">
 							        <thead>
 								        <tr>
 									        <th>Pseudo</th>
 									        <th>Catégorie</th>
 									        <th>Etablissement</th>
+									        <th>Options</th>
 								        </tr>
 							        </thead>
 							        <tbody>';
 
                     foreach($listUsers as $user)
                     {
-                        echo '<tr><td>' . $user['username'] . '</td><td>' . $user['category'] . '</td><td>' . $user['etablishing'] . '</td></tr>';
+                        $numberRow++;
+
+                        echo '<tr><td>' . $user['username'] . '</td><td>' . $user['category'] . '</td><td>' . $user['etablishing'] . '</td><td><button type="button" onclick="deleteStudent(\'' . $user['username'] . '\', \'' . $group['groupName'] . '\', \'' . $numberRow . '\');" class="btn btn-danger"><i class="icon icon-remove"></i></button></td></tr>';
                     }
 
 					echo '          </tbody>
 						        </table>
 					        </div>
+					        <form method="post" action="#" onsubmit="addStudent(this.username.value, this.etablishing.value, this.groupName.value);return false" class="form-inline" style="margin-top: 10px;">
+					            <div class="control-group">
+					                <label class="control-label">Pseudo (Nom et initaliale du prénom, DelaporteD) :</label>
+					                <div class="controls">
+					                    <input type="text" name="username' . $group['groupName'] . '" id="username' . $group['groupName'] . '">
+					                </div>
+					            </div>
+					            <input type="hidden" name="etablishing" id="etablishing" value="' . $_SESSION['etablishing'] . '">
+					            <input type="hidden" name="groupName" id="groupName" value="' . $group['groupName'] . '">
+					            <input type="submit" value="Ajouter un utilisateur" class="btn">
+					        </form>
 				          </div>';
                 }?>
             </div>

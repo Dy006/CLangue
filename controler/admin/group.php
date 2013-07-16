@@ -12,6 +12,18 @@ if($_SESSION['user'] != NULL && $_SESSION['category'] != 'Student')
     {
         addHomework($_POST['name'], $_POST['work'], $_POST['selectGroupName'], $_POST['dateEnd']);
     }
+    elseif($_GET['a'] == 'addStudent')
+    {
+        echo addStudent($_POST['username' . $_POST['groupName']], $_POST['password'], $_POST['category'], $_POST['etablishing'], $_POST['groupName']);
+
+        exit();
+    }
+    elseif($_GET['a'] == 'deleteStudent')
+    {
+        echo deleteStudent($_POST['username'], $_POST['groupName']);
+
+        exit();
+    }
 
     $listSubjects = getListSubjects();
     $countSubjects = getCountSubjects();
