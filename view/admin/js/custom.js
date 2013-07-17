@@ -2,9 +2,6 @@ $(document).ready(function(){
 			
 	/* ---------- Acivate Functions ---------- */
 	template_functions();
-	init_masonry();
-	sparkline_charts();
-	charts();
 	calendars();
 	growlLikeNotifications();
 	widthFunctions();
@@ -19,7 +16,6 @@ $(document).ready(function(){
 		
 	}
 	
-	chart();
 	messageLike();
 	
 	setInterval(tempStats, 3000);
@@ -112,35 +108,6 @@ function tempStats(){
 	
 }
 
-/* ---------- Masonry Gallery ---------- */
-
-function init_masonry(){
-    var $container = $('.masonry-gallery');
-
-    var gutter = 6;
-    var min_width = 250;
-    $container.imagesLoaded( function(){
-        $container.masonry({
-            itemSelector : '.masonry-thumb',
-            gutterWidth: gutter,
-            isAnimated: true,
-              columnWidth: function( containerWidth ) {
-                var num_of_boxes = (containerWidth/min_width | 0);
-
-                var box_width = (((containerWidth - (num_of_boxes-1)*gutter)/num_of_boxes) | 0) ;
-
-                if (containerWidth < min_width) {
-                    box_width = containerWidth;
-                }
-
-                $('.masonry-thumb').width(box_width);
-
-                return box_width;
-              }
-        });
-    });
-}
-
 /* ---------- Numbers Sepparator ---------- */
 
 function numberWithCommas(x) {
@@ -183,10 +150,7 @@ function template_functions(){
 	$('a[href="#"][data-top!=true]').click(function(e){
 		e.preventDefault();
 	});
-	
-	/* ---------- Text editor ---------- */
-	$('.cleditor').cleditor();
-	
+
 	/* ---------- Datapicker ---------- */
 	$('.datepicker').datepicker();
 	
@@ -197,8 +161,7 @@ function template_functions(){
 		noty(options);
 	});
 
-	/* ---------- Uniform ---------- */
-	$("input:checkbox, input:radio, input:file").not('[data-no-uniform="true"],#uniform-is-ajax').uniform();
+
 
 	/* ---------- Choosen ---------- */
 	$('[data-rel="chosen"],[rel="chosen"]').chosen();
@@ -226,22 +189,7 @@ function template_functions(){
 	/* ---------- Popover ---------- */
 	$('[rel="popover"],[data-rel="popover"]').popover();
 
-	/* ---------- File Manager ---------- */
-	var elf = $('.file-manager').elfinder({
-		url : 'misc/elfinder-connector/connector.php'  // connector URL (REQUIRED)
-	}).elfinder('instance');
 
-	/* ---------- Star Rating ---------- */
-	$('.raty').raty({
-		score : 4 //default stars
-	});
-
-	/* ---------- Uploadify ---------- */
-	$('#file_upload').uploadify({
-		'swf'      : 'misc/uploadify.swf',
-		'uploader' : 'misc/uploadify.php'
-		// Put your options here
-	});
 
 	/* ---------- Fullscreen ---------- */
 	$('#toggle-fullscreen').button().click(function () {
@@ -583,41 +531,7 @@ function template_functions(){
 function circle_progess() {
 	
 	var divElement = $('div'); //log all div elements
-	
-	if (retina()) {
-		
-		$(".whiteCircle").knob({
-	        'min':0,
-	        'max':100,
-	        'readOnly': true,
-	        'width': 240,
-	        'height': 240,
-			'bgColor': 'rgba(255,255,255,0.5)',
-	        'fgColor': 'rgba(255,255,255,0.9)',
-	        'dynamicDraw': true,
-	        'thickness': 0.2,
-	        'tickColorizeValues': true
-	    });
-	
-		$(".circleStat").css('zoom',0.5);
-		$(".whiteCircle").css('zoom',0.999);		
-		
-	} else {
-		
-		$(".whiteCircle").knob({
-	        'min':0,
-	        'max':100,
-	        'readOnly': true,
-	        'width': 120,
-	        'height': 120,
-			'bgColor': 'rgba(255,255,255,0.5)',
-	        'fgColor': 'rgba(255,255,255,0.9)',
-	        'dynamicDraw': true,
-	        'thickness': 0.2,
-	        'tickColorizeValues': true
-	    });
-		
-	}
+
 	
 	$(".circleStatsItemBox").each(function(){
 		

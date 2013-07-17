@@ -12,7 +12,6 @@
     <link href="view/admin/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="view/admin/css/style.min.css" rel="stylesheet">
     <link href="view/admin/css/style-responsive.min.css" rel="stylesheet">
-    <link href="view/admin/css/retina.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
