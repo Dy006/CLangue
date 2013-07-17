@@ -22,5 +22,4 @@ Licence du projet
 Projet lié
 ==========
 
-le projet AudioRecorder l'applet Java qui permet de faire fonctionner la prise de parrole en continue est disponible ici :
-......
+le projet AudioRecorder l'applet Java qui permet de faire fonctionner la prise de parrole en continue est disponible ici : https://github.com/PoxProject/CLangueRecorder
