@@ -18,7 +18,6 @@ https://docs.google.com/document/d/100cjXlwzFWjVyDfPeAz4z3SZegc0DkBeUcJbO7JEcbI/
 Licence du projet 
 =================
 
-GNU/GPL
 
 Projet lié
 ==========
