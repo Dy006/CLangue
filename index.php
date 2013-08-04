@@ -1,7 +1,12 @@
 <?php
 include_once 'model/sql_connect.php';
 
-if ($_GET['type'] == 'showQcm')
+if($_SESSION['user'] != NULL && $_SESSION['category'] != 'Student')
+{
+    header('Location: admin.php');
+}
+
+if ($_GET['type'] == 'showWork')
 {
     if($_GET['homeworkType'] == 'QCM')
     {

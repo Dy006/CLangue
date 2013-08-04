@@ -2,22 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>HomeWARK - Elève</title>
+    <title>CLangue - Elève</title>
     <base href="http://pox.alwaysdata.net/other/tutorials/workclasslangue/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="view/student/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="view/student/css/theme.css">
     <link rel="stylesheet" type="text/css" href="view/student/css/animate.css">
     <link rel="stylesheet" type="text/css" href="view/student/css/external-pages.css">
 	<link rel="stylesheet" type="text/css" href="view/student/css/signin.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <script type="text/javascript">
-
-    </script>
 	</head>
 <body>
 <a href="#" class="scrolltop">
-    <span>up</span>
+    <span>Haut</span>
 </a>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -28,12 +26,12 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand scroller" data-section="body" href="index">
-                <img src="view/student/img/logo.png" alt="logo"/>
+                <img src="view/student/img/clangue.png" alt="logo"/>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="#" class="scroller" data-section="#home">Acceuil</a></li>
-                    <li><a href="#" class="scroller" data-section="#homework">Devoirs</a></li>
+                    <li><a href="index">Accueil</a></li>
+                    <li><a href="index#homework">Devoirs</a></li>
                     <li><a href="profile">Profil</a></li>
                     <li><a href="faq">FAQ</a></li>
 					<?php
@@ -75,17 +73,17 @@
             <span><?php echo $subject[4]; ?></span>
             <hr class="right visible-desktop">
         </h2>
-		
-		<applet name="AudioApplet" code=fr.gv.AudioRecorder.class codebase="http://pox.alwaysdata.net/other/tutorials/workclasslangue/view/student/applet/" 
-							archive="AudioRecorder.jar,commons-codec-1.6.jar,commons-logging-1.1.1.jar,fluent-hc-4.2.5.jar,httpclient-4.2.5.jar,httpclient-cache-4.2.5.jar,plugin.jar,httpcore-4.2.4.jar,httpmime-4.2.5.jar" 
-							width    = "0"
-  							height   = "0"
-  							hspace   = "0"
-  							vspace   = "0"
-  							align    = "left">
-							<param name=W value="<?php echo $homeworkId; ?>">
-							<param name=U value="<?php echo $_SESSION['user']; ?>">
-						</applet>
+
+        <applet type="application/x-java-applet" name="AudioApplet" code=fr.gv.AudioRecorder.class codebase="http://pox.alwaysdata.net/other/tutorials/workclasslangue/view/student/applet/"
+                archive="AudioRecorder.jar,commons-codec-1.6.jar,commons-logging-1.1.1.jar,fluent-hc-4.2.5.jar,httpclient-4.2.5.jar,httpclient-cache-4.2.5.jar,plugin.jar,httpcore-4.2.4.jar,httpmime-4.2.5.jar"
+                width    = "0"
+                height   = "0"
+                hspace   = "0"
+                vspace   = "0"
+                align    = "left">
+            <param name=W value="<?php echo $homeworkId; ?>">
+            <param name=U value="<?php echo $_SESSION['user']; ?>">
+        </applet>
 
         <div class="row">
 				<div class="span12">					
@@ -205,10 +203,10 @@
     <div class="container">
         <div class="row">
             <div class="span5">
-                HomeWARK par Dylan Delaporte et Guillaume Villena
+                CLangue par Dylan Delaporte et Guillaume Villena
             </div>
             <div class="pull-right">
-                <p>2012 - 2013</p>
+                <p>2013</p>
             </div>
         </div>
     </div>

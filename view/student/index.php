@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>HomeWARK - Elève</title>
+    <title>CLangue - Elève</title>
     <base href="http://pox.alwaysdata.net/other/tutorials/workclasslangue/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,11 +10,11 @@
     <link rel="stylesheet" type="text/css" href="view/student/css/theme.css">
     <link rel="stylesheet" type="text/css" href="view/student/css/animate.css">
     <link rel="stylesheet" type="text/css" href="view/student/css/external-pages.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
 </head>
 <body>
 <a href="#" class="scrolltop">
-    <span>up</span>
+    <span>Haut</span>
 </a>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -25,11 +25,11 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand scroller" data-section="body" href="index">
-                <img src="view/student/img/logo.png" alt="logo"/>
+                <img src="view/student/img/clangue.png" alt="logo"/>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="#" class="scroller" data-section="#home">Accueil</a></li>
+                    <li><a href="#" class="scroller" data-section="#start">Accueil</a></li>
                     <li><a href="#" class="scroller" data-section="#homework">Devoirs</a></li>
                     <li><a href="profile">Profil</a></li>
                     <li><a href="faq">FAQ</a></li>
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div id="home">
+<div id="start">
     <div class="container">
         <h2 class="section_header">
             <hr class="left visible-desktop">
@@ -141,7 +141,9 @@
 
                         echo '<td><a href="' . $type . '/' . $homework['id'] . '/' . $homework['subjectId'] . '">' . $homework['name'] . '</a></td><td>' . $homework['type'] . '</td><td>' . $homework['username'] . '</td><td>'.$homework['dateEnd'].'</td>';
 
-                        if (time() > strtotime($homework['dateEnd']))
+                        $timestamp = DateTime::createFromFormat('!d/m/Y', $homework['dateEnd'])->getTimestamp();
+
+                        if (time() > $timestamp)
                         {
                             echo '<td><span class="label label-important">Expiré</span></td>';
                         }
@@ -168,10 +170,10 @@
     <div class="container">
         <div class="row">
             <div class="span5">
-                HomeWARK par Dylan Delaporte et Guillaume Villena
+                CLangue par Dylan Delaporte et Guillaume Villena
             </div>
             <div class="pull-right">
-                <p>2012 - 2013</p>
+                <p>2013</p>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>WorkClassLangue - Student</title>
+    <title>CLangue - Elève</title>
     <base href="http://pox.alwaysdata.net/other/tutorials/workclasslangue/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,7 +14,7 @@
 </head>
 <body>
 <a href="#" class="scrolltop">
-    <span>up</span>
+    <span>Haut</span>
 </a>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -25,12 +25,12 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand scroller" data-section="body" href="index">
-                <img src="view/student/img/logo.png" alt="logo"/>
+                <img src="view/student/img/clangue.png" alt="logo"/>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="#" class="scroller" data-section="#home">Accueil</a></li>
-                    <li><a href="#" class="scroller" data-section="#homework">Devoirs</a></li>
+                    <li><a href="index">Accueil</a></li>
+                    <li><a href="index#homework">Devoirs</a></li>
                     <li><a href="profile">Profil</a></li>
                     <li><a href="faq">FAQ</a></li>
                     <?php
@@ -115,10 +115,10 @@
     <div class="container">
         <div class="row">
             <div class="span5">
-                HomeWARK par Dylan Delaporte et Guillaume Villena
+                CLangue par Dylan Delaporte et Guillaume Villena
             </div>
             <div class="pull-right">
-                <p>2012 - 2013</p>
+                <p>2013</p>
             </div>
         </div>
     </div>

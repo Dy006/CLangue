@@ -67,7 +67,7 @@ function record()
 {
     if(loaded)
     {
-        document.applets[0].recordAudio();
+        document.AudioApplet.recordAudio();
         seconde = 0;
         minute = 0;
 
@@ -86,7 +86,7 @@ function play()
 {
     if(loaded)
     {
-        document.applets[0].playAudio();
+        document.AudioApplet.playAudio();
 
         activateButton('playButton');
         activateButton('stopButton');
@@ -101,7 +101,7 @@ function stop()
 {
     if(loaded)
     {
-        document.applets[0].stopAudio();
+        document.AudioApplet.stopAudio();
 
         window.clearTimeout(compte);
 
@@ -112,7 +112,7 @@ function stop()
 
         disableButton('stopButton');
 
-        document.applets[0].saveAudio();
+        document.AudioApplet.saveAudio();
     }
 }
 
@@ -120,7 +120,7 @@ function choseFile()
 {
     if(loaded)
     {
-        document.applets[0].choose_file();
+        document.AudioApplet.choose_file();
 
         activateButton('recordButton');
         activateButton('selectFileButton');
@@ -141,7 +141,7 @@ function send()
 {
     if(loaded)
     {
-        document.applets[0].UploadToServer();
+        document.AudioApplet.UploadToServer();
 
         disableButton('playButton');
         disableButton('recordButton');

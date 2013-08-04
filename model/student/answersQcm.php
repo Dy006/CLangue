@@ -113,11 +113,11 @@ function alreadyDone($id, $subjectId)
     $rep2 = $req->fetch();
 
     $today = time();
-    $ancTime = strtotime($rep2['dateEnd']);
+    $timestamp = DateTime::createFromFormat('!d/m/Y', $rep2['dateEnd'])->getTimestamp();
 
     if ($rep['nb'] == 0)
     {
-        if ($today > $ancTime)
+        if ($today > $timestamp)
         {
             return false;
         }

@@ -285,7 +285,7 @@
                                             <td class="center">' . $homework['dateEnd'] . '</td>
                                             <td>
                                                 <a class="btn btn-success" href="admin/result/' . $homework['groupName'] . '/' . $homework['subjectId'] . '/' . $homework['id'] . '">
-                                                    Result
+                                                    Resultat
                                                 </a>
                                                 <a class="btn btn-danger" href="#confirmDelete" onclick="confirmdelete(' . $homework['id'] . ');" data-toggle="modal">
                                                     <i class="halflings-icon trash halflings-icon"></i>
@@ -430,5 +430,6 @@
 <script src='view/admin/js/fullcalendar.min.js'></script>
 <script src='view/admin/js/jquery.dataTables.min.js'></script>
 <script src="view/admin/js/jquery.chosen.min.js"></script>
-<script src="view/admin/js/custom.js"></script></body>
+<script src="view/admin/js/custom.js"></script>
+</body>
 </html>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>HomeWARK - Elève</title>
+    <title>CLangue - Elève</title>
     <base href="http://pox.alwaysdata.net/other/tutorials/workclasslangue/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,10 +10,27 @@
     <link rel="stylesheet" type="text/css" href="view/student/css/signin.css">
     <link rel="stylesheet" type="text/css" href="view/student/css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+        function showInfoRememberMe()
+        {
+            var rememberMeCheckBox = document.getElementById('remember_me');
+            var divInfoRememberMe = document.getElementById('infoRememberMe');
+
+            if(!rememberMeCheckBox.checked)
+            {
+                divInfoRememberMe.innerHTML = '';
+            }
+            else
+            {
+                divInfoRememberMe.innerHTML = 'En cochant cette case, vous acceptez la déposition de cookies sur votre ordinateur.'
+            }
+        }
+    </script>
 </head>
 <body>
 <a href="#" class="scrolltop">
-    <span>up</span>
+    <span>Haut</span>
 </a>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -24,12 +41,12 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand scroller" data-section="body" href="index">
-                <img src="view/student/img/logo.png" alt="logo"/>
+                <img src="view/student/img/clangue.png" alt="logo"/>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="index" class="scroller" data-section="#home">Accueil</a></li>
-                    <li><a href="index" class="scroller" data-section="#homework">Devoirs</a></li>
+                    <li><a href="index">Accueil</a></li>
+                    <li><a href="index#homework">Devoirs</a></li>
                     <li><a href="profile">Profil</a></li>
                     <li><a href="faq">FAQ</a></li>
                     <li><a class="btn-header" href="login">Connexion</a></li>
@@ -67,13 +84,14 @@
 
                             <div class="remember">
                                 <div class="left">
-                                    <input id="remember_me" type="checkbox">
+                                    <input id="remember_me" name="remember_me" type="checkbox" onchange="showInfoRememberMe();">
                                     <label for="remember_me">Se rappeler de moi</label>
                                 </div>
                                 <div class="right">
-                                    <a href="forgotpassword">Mot de passe oublié ?</a>
+                                    <a href="faq#forgotpassword">Mot de passe oublié ?</a>
                                 </div>
                             </div>
+                            <div id="infoRememberMe" style="margin-top: 6px;"></div>
                             <input type="submit" class="btn" value="Connexion">
                         </form>
                     </div>

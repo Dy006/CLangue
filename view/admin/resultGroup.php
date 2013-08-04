@@ -182,7 +182,7 @@
                                 }
                             }
 
-                            echo '<div class="priority low"><span>Good Average</span></div>' . $good . '<div class="priority medium"><span>Medium Average</span></div>' . $medium . '<div class="priority high"><span>Bad Average</span></div>' . $bad . '';
+                            echo '<div class="priority low"><span>Bien</span></div>' . $good . '<div class="priority medium"><span>Assez-bien</span></div>' . $medium . '<div class="priority high"><span>Mauvais</span></div>' . $bad . '';
                         }
                         else
                         {

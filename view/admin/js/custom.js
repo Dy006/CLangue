@@ -152,7 +152,9 @@ function template_functions(){
 	});
 
 	/* ---------- Datapicker ---------- */
-	$('.datepicker').datepicker();
+	$('.datepicker').datepicker({
+        dateFormat: 'dd/mm/yy'
+    });
 	
 	/* ---------- Notifications ---------- */
 	$('.noty').click(function(e){
